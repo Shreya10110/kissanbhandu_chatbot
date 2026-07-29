@@ -564,6 +564,9 @@
       scrollToBottom();
     }
 
+    // Configure your Hugging Face Space URL here if you want to deploy the frontend separately (e.g. 'https://username-space.hf.space')
+    const BACKEND_URL = '';
+
     const langSelect = document.getElementById('langSelect');
 
     const welcomeMessages = {
@@ -594,9 +597,10 @@
       addTyping();
 
       const selectedLang = langSelect.value;
+      const apiEndpoint = BACKEND_URL ? `${BACKEND_URL.replace(/\/$/, '')}/api/ask` : '/api/ask';
 
       try {
-        const res = await fetch('/api/ask', {
+        const res = await fetch(apiEndpoint, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ q: question, lang: selectedLang })

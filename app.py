@@ -16,7 +16,7 @@ model = AutoModelForSeq2SeqLM.from_pretrained(llm_name, low_cpu_mem_usage=True)
 
 @app.route("/")
 def home():
-    return send_file("kisanbandhu_ui.html")
+    return send_file("index.html")
 
 @app.route("/api/ask", methods=["POST"])
 def ask():
